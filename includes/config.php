@@ -1,6 +1,6 @@
 <?php
 $host = '127.0.0.1';
-$db   = 'aspslutuppgift';
+$db   = 'aspslutuppgift-re';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
