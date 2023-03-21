@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -5,12 +6,12 @@
 if(isset($_POST["submit-article-button"]) || isset($_POST["submit-skill-button"])) {
 	
 $target_dir = "img/";
-$target_file = $target_dir . basename($_FILES["personalbild"]["name"]);
+$target_file = $target_dir . basename($_FILES[""]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	
 // Check if image file is a actual image or fake image
-  $check = getimagesize($_FILES["personalbild"]["tmp_name"]);
+  $check = getimagesize($_FILES[""]["tmp_name"]);
   if($check !== false) {
     echo "File is an image - " . $check["mime"] . ".";
     $uploadOk = 1;
@@ -55,7 +56,6 @@ else {
 
 }
 ?>
-
 
 
 
