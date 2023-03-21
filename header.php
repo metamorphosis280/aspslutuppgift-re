@@ -20,7 +20,7 @@ if(isset($_POST['logout-button'])){
 <body>
 
 <div id="header">
-  <h1 class="header-text">E-portfolio</h1>
+  <h1 class="header-text">Bibliotek</h1>
 </div>
 
 <div id="navigation">

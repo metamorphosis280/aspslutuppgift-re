@@ -13,7 +13,7 @@
 	<div class="container mb-5">
 		<div class="row">
 			<div class="col">
-				<h2 class="text-center my-5">Personal</h2>
+				<h2 class="text-center my-5">Boksökning</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -42,10 +42,10 @@
 	<div class="card">
 	<div class="card-body d-flex flex-column">
 	<img src="img/'.$row["personalbild"].'" class="card-img-top" alt="...">
-	  <h5 class="card-title"> "'.$row["namn"].'"</h5>
-	  <p class="card-text">"'.$row["efternamn"].'"</p>
-	  <p class="card-text">"'.$row["jobbtitel"].'"</p>
-	  <p class="card-text">"'.$row["telefonnummer"].'"</p>
+	  <h5 class="card-title"> "'.$row[""].'"</h5>
+	  <p class="card-text">"'.$row[""].'"</p>
+	  <p class="card-text">"'.$row[""].'"</p>
+	  <p class="card-text">"'.$row[""].'"</p>
 	  
 	  <a href="singlecard.php?ID='.$row['a_ID'].'" class="btn btn-primary mt-auto align-self-start">mera info</a>
 	   

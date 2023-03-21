@@ -20,10 +20,10 @@ include_once "includes/functions.php";
 
 if(isset($_POST['submit-article-button'])){
    if(addProject($pdo)){
-       echo "persona added successfully";
+       echo "book added successfully";
    }
    else{
-       echo "Something went wrong, card not added";
+       echo "Something went wrong, book not added";
    }
 
 }
@@ -44,7 +44,7 @@ if(isset($_POST['submit-article-button'])){
 <body>
 
     <div id='header'>
-        <h1 class='header-text'>Create Employee info card</h1>
+        <h1 class='header-text'>Create New Book</h1>
     </div>
 
     <div id='navigation'>
@@ -58,27 +58,46 @@ if(isset($_POST['submit-article-button'])){
 <div id='content'>
     <div class="content-inner">
         <form method="POST" action="" enctype="multipart/form-data">
-            <label for="namn">namn:</label><br>
-            <input id="namn" name="namn" type="text"><br>
-            <label for="efternamn">content:</label><br>
-            <input id="efternamn" name="efternamn" type="text"><br>
-            <label for="jobbtitel">content:</label><br>
-            <input id="jobbtitel" name="jobbtitel" type="text"><br>
-            <label for="telefonnummer">telefonnummer:</label><br>
-            <input id="telefonnummer" name="telefonnummer" type="text"><br>
-            <label for="epost">epost:</label><br>
-            <input id="epost" name="epost" type="text"><br>
-             <label for="personalbild">bild:</label><br>
-            <input id="personalbild" name="prrsonalbild" type="file"><br>
+            <label for="title">title:</label><br>
+            <input id="title" name="title" type="text"><br>
+            <label for="desc">description:</label><br>
+            <input id="desc" name="desc" type="text"><br>
+            <label for="author">author:</label><br>
+            <input id="author" name="author" type="text"><br>
+            <label for="illustrator">illustrator:</label><br>
+            <input id="illustrator" name="illustrator" type="text"><br>
+            <label for="age">age rec:</label><br>
+            <input id="age" name="age" type="text"><br>
+             <label for="category">category:</label><br>
+            <input id="category" name="category" type="text"><br>
+            <label for="genre">genre:</label><br>
+            <input id="genre" name="genre" type="text"><br>
+            <label for="language">language:</label><br>
+            <input id="language" name="language" type="text"><br>
+            <label for="release">release:</label><br>
+            <input id="release" name="release" type="text"><br>
+            <label for="publisher">publisher:</label><br>
+            <input id="publisher" name="publisher" type="text"><br>
+            <label for="pagecount">pagecount:</label><br>
+            <input id="pagecount" name="pagecount" type="text"><br>
+            <label for="price">price:</label><br>
+            <input id="price" name="price" type="text"><br>
             
             <?php
                 if(isset($_POST['submit-article-button'])){
-                    $namn =$_POST['namn'];
-                    $efternamn =$_POST['efternamn'];
-                    $jobbtitel =$_POST['jobbtitel'];
-                    $telefonnummer =$_POST['telefonnummer'];
-                    $epost =$_POST['epost'];
-                    $personalbild =$_FILES['personalbild'];
+                    $title =$_POST['title'];
+                    $desc =$_POST['desc'];
+                    $author =$_POST['author'];
+                    $illustrator =$_POST['illustrator'];
+                    $age =$_POST['age'];
+                    $category =$_POST['category'];
+                    $genre =$_POST['genre'];
+                    $language =$_POST['language'];
+                    $release =$_POST['release'];
+                    $publisher =$_POST['publisher'];
+                    $pagecount =$_POST['pagecount'];
+                    $price =$_POST['price'];
+
                     
                 
                 
@@ -86,15 +105,21 @@ if(isset($_POST['submit-article-button'])){
                     
                     
                     
-                    $stmt_addAnstald = $pdo->prepare("INSERT INTO anstalda (namn, efternamn, jobbtitel, telefonnummer, epost, personalbild) VALUES (:namn, :efternamn, :jobbtitel, :telefonnummer, :epost, :personalbild,)");
-                    $stmt_addAnstald->bindValue(":namn", $namn, PDO::PARAM_STR);
-                    $stmt_addAnstald->bindValue(":efternamn", $efternamn, PDO::PARAM_STR);
-                    $stmt_addAnstald->bindValue(":jobbtitel", $jobbtitel, PDO::PARAM_STR);
-                    $stmt_addAnstald->bindValue(":telefonnummer", $telefonnummer, PDO::PARAM_STR);
-                    $stmt_addAnstald->bindValue(":epost", $epost, PDO::PARAM_STR);
-                    $stmt_addAnstald->bindValue(":personalbild", $personalbild, PDO::PARAM_STR);
-                    $stmt_addAnstald->bindValue(":ID", $ID, PDO::PARAM_STR);
-                    $stmt_addAnstald->execute();
+                    $stmt_addBook = $pdo->prepare("INSERT INTO anstalda (namn, efternamn, jobbtitel, telefonnummer, epost, personalbild) VALUES (:namn, :efternamn, :jobbtitel, :telefonnummer, :epost, :personalbild,)");
+                    $stmt_addBook ->bindValue(":title", $title, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":desc", $desc, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":author", $author, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":illustrator", $illustrator, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":age", $age, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":category", $category, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":genre", $genre, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":language", $language, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":release", $release, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":publisher", $publisher, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":pagecount", $pagecount, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":price", $price, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":ID", $ID, PDO::PARAM_STR);
+                    $stmt_addBook ->execute();
             
             
                 }
