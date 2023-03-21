@@ -5,7 +5,7 @@
 	
 		//Kolla om användaren är inloggad
 	if(!$user->checkLoginStatus()){
-	$user->userRedirect("index.php?registerattempt=1");
+	$user->userRedirect("admincomms.php?registerattempt=1");
 	}
 	
 	if(isset($_POST['submit_register'])){
@@ -13,7 +13,7 @@
 		if($user->checkUserRegisterInput($_POST['username'], $_POST['password'], $_POST['password_confirm'],$_POST['firstname'],$_POST['lastname'], $_POST['email-field'],0)){
 			
 			if($user->userRegister($_POST['username'], $_POST['password'], $_POST['password_confirm'],$_POST['firstname'],$_POST['lastname'], $_POST['email-field'])){
-				$user->userRedirect("index.php?registrationsuccessful=1");
+				$user->userRedirect("login.php?registrationsuccessful=1");
 			}
 			else {
 				echo $user->getErrorMessage();

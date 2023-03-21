@@ -17,18 +17,24 @@
     $ID = $_GET['ID'];
 
 	
-    $stmt_selectProject = $pdo->prepare("SELECT * from anstalda WHERE a_ID = :ID");
+    $stmt_selectProject = $pdo->prepare("SELECT * from books WHERE a_ID = :ID");
 		$stmt_selectProject->bindValue(":ID", $ID, PDO::PARAM_INT);
 		$stmt_selectProject->execute();
 		$row = $stmt_selectProject->fetch(PDO::FETCH_ASSOC);
 	
-	if(isset($_POST['submit-article-button'])){
-		$namn =$_POST['namn'];
-		$efternamn =$_POST['efternamn'];
-		$jobbtitel =$_POST['jobbtitel'];
-		$telefonnummer =$_POST['telefonnummer'];
-		$epost =$_POST['epost'];
-		$personalbild =$_FILES['personalbild'];
+		if(isset($_POST['submit-article-button'])){
+			$title =$_POST['title'];
+			$desc =$_POST['descr'];
+			$author =$_POST['author'];
+			$illustrator =$_POST['illustrator'];
+			$age =$_POST['age'];
+			$category =$_POST['category'];
+			$genre =$_POST['genre'];
+			$language =$_POST['languages'];
+			$release =$_POST['release'];
+			$publisher =$_POST['publisher'];
+			$pageamount =$_POST['pageamount'];
+			$price =$_POST['price'];
 		
 	
 	
@@ -36,15 +42,24 @@
 		
 		
 		
-		$stmt_addAnstald = $pdo->prepare("UPDATE anstalda SET namn=:namn, efternamn=:efternamn, jobbtitel=:jobbtitel, telefonnummer=:telefonnummer, epost=:epost, personalbild=:personalbild WHERE a_ID = :ID");
-		$stmt_addAnstald->bindValue(":namn", $namn, PDO::PARAM_STR);
-		$stmt_addAnstald->bindValue(":efternamn", $efternamn, PDO::PARAM_STR);
-		$stmt_addAnstald->bindValue(":jobbtitel", $jobbtitel, PDO::PARAM_STR);
-		$stmt_addAnstald->bindValue(":telefonnummer", $telefonnummer, PDO::PARAM_STR);
-		$stmt_addAnstald->bindValue(":epost", $epost, PDO::PARAM_STR);
-		$stmt_addAnstald->bindValue(":personalbild", $personalbild, PDO::PARAM_STR);
-		$stmt_addAnstald->bindValue(":ID", $ID, PDO::PARAM_STR);
-		$stmt_addAnstald->execute();
+		$stmt_addBook = $pdo->prepare("INSERT INTO books (title, descr, author, illustrator, age, category, genre, languages, release, publisher, pageamount, price) VALUES (:title, :descr, :author, :illustrator, :age, :category, :genre, :languages, :release :publisher, :pageamount, :price)");
+                    $stmt_addBook ->bindValue(":title", $title, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":descr", $descr, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":author", $author, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":illustrator", $illustrator, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":age", $age, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":category", $category, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":genre", $genre, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":languages", $languages, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":release", $release, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":publisher", $publisher, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":pageamount", $pageamount, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":price", $price, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":ID", $ID, PDO::PARAM_STR);
+                    $stmt_addBook ->execute();
+            
+            
+                }
 
 
 	}

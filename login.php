@@ -11,7 +11,7 @@
 	if(isset($_POST['login-submit'])){
 		
 		if($user->userLogin($_POST['username'], $_POST['password'])){
-			$user->userRedirect('index.php');
+			$user->userRedirect('admincomms.php');
 		}
 		else{
 			$errorMessage = $user->getErrorMessage();
