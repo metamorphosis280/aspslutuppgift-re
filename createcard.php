@@ -128,7 +128,7 @@ if(isset($_POST['submit-article-button'])){
 
             
 
-            <input type="submit" name="submit-article-button" value="skapa artikel">
+            <input type="submit" name="submit-article-button" value="create new book">
            </form>
 
 </div>

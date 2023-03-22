@@ -8,22 +8,60 @@
 	
 ?>
 <form method="POST" action="" enctype="multipart/form-data">
-            <label for="lname">language name:</label><br>
+            <label for="lname">add new language:</label><br>
             <input id="lname" name="lname" type="text"><br>
 <?php
-	if(isset($_POST['submit-article-button'])){
+	if(isset($_POST['submit-language-button'])){
 	  $lname =$_POST['lname'];
 	  
    
                    $stmt_addlanguage = $pdo->prepare("INSERT INTO table_language (lname) VALUES (:lname)");
                     $stmt_addlanguage ->bindValue(":lname", $lname, PDO::PARAM_STR);
-                    $stmt_addlanguage ->bindValue(":ID", $ID, PDO::PARAM_STR);
                     $stmt_addlanguage ->execute();
             
             
                 }
+              
+
+  
             ?>
- <input type="submit" name="submit-article-button" value="skapa artikel">
+<input type="submit" name="submit-language-button" value="create language"><br>
+
+<form method="POST" action="" enctype="multipart/form-data">
+<label for="lname">add new category:</label><br>
+<input id="c_name" name="c_name" type="text"><br>
+<?php
+
+if(isset($_POST['submit-category-button'])){
+  $c_name =$_POST['c_name'];
+                    
+                   
+   $stmt_addlanguage = $pdo->prepare("INSERT INTO table_category (c_name) VALUES (:c_name)");
+    $stmt_addlanguage ->bindValue(":c_name", $c_name, PDO::PARAM_STR);
+     $stmt_addlanguage ->execute();
+                            
+                            
+                                }
+?>
+<input type="submit" name="submit-category-button" value="create category"><br>
+
+<form method="POST" action="" enctype="multipart/form-data">
+<label for="lname">add new author:</label><br>
+<input id="au_name" name="au_name" type="text"><br>
+<?php
+
+if(isset($_POST['submit-author-button'])){
+  $au_name =$_POST['au_name'];
+                    
+                   
+   $stmt_addauthor = $pdo->prepare("INSERT INTO table_author (au_name) VALUES (:au_name)");
+    $stmt_addauthor ->bindValue(":au_name", $au_name, PDO::PARAM_STR);
+     $stmt_addauthor ->execute();
+                            
+                            
+                                }
+?>
+ <input type="submit" name="submit-author-button" value="create author">
            </form>
 <?php
 include_once "includes/footer.php";
