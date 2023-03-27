@@ -6,12 +6,12 @@
 if(isset($_POST["submit-article-button"]) || isset($_POST["submit-skill-button"])) {
 	
 $target_dir = "img/";
-$target_file = $target_dir . basename($_FILES[""]["name"]);
+$target_file = $target_dir . basename($_FILES["bcover"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	
 // Check if image file is a actual image or fake image
-  $check = getimagesize($_FILES[""]["tmp_name"]);
+  $check = getimagesize($_FILES["bcover"]["tmp_name"]);
   if($check !== false) {
     echo "File is an image - " . $check["mime"] . ".";
     $uploadOk = 1;
@@ -28,7 +28,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["personalbild"]["size"] > 50000000) {
+if ($_FILES["bcover"]["size"] > 50000000) {
   echo "Sorry, your file is too large.";
   $uploadOk = 0;
 }

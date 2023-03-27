@@ -28,7 +28,7 @@
 <input type="submit" name="submit-language-button" value="create language"><br>
 
 <form method="POST" action="" enctype="multipart/form-data">
-<label for="lname">add new category:</label><br>
+<label for="c_name">add new category:</label><br>
 <input id="c_name" name="c_name" type="text"><br>
 <?php
 
@@ -46,7 +46,7 @@ if(isset($_POST['submit-category-button'])){
 <input type="submit" name="submit-category-button" value="create category"><br>
 
 <form method="POST" action="" enctype="multipart/form-data">
-<label for="lname">add new author:</label><br>
+<label for="au_name">add new author:</label><br>
 <input id="au_name" name="au_name" type="text"><br>
 <?php
 
@@ -61,7 +61,27 @@ if(isset($_POST['submit-author-button'])){
                             
                                 }
 ?>
- <input type="submit" name="submit-author-button" value="create author">
+ <input type="submit" name="submit-author-button" value="create author"><br>
+
+
+
+ <form method="POST" action="" enctype="multipart/form-data">
+<label for="gname">add new genre:</label><br>
+<input id="g_name" name="g_name" type="text"><br>
+<?php
+
+if(isset($_POST['submit-genre-button'])){
+  $c_name =$_POST['g_name'];
+                    
+                   
+   $stmt_addgenre = $pdo->prepare("INSERT INTO table_category (c_name) VALUES (:c_name)");
+    $stmt_addgenre ->bindValue(":c_name", $c_name, PDO::PARAM_STR);
+     $stmt_addgenre ->execute();
+                            
+                            
+                                }
+?>
+<input type="submit" name="submit-genre-button" value="create genre"><br>
            </form>
 <?php
 include_once "includes/footer.php";

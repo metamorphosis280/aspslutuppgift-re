@@ -19,7 +19,7 @@ include_once "includes/functions.php";
 
 
 if(isset($_POST['submit-article-button'])){
-   if(addProject($pdo)){
+   if(addBook($pdo)){
        echo "book added successfully";
    }
    else{
@@ -82,6 +82,8 @@ if(isset($_POST['submit-article-button'])){
             <input id="pageamount" name="pageamount" type="text"><br>
             <label for="price">price:</label><br>
             <input id="price" name="price" type="text"><br>
+            <label for="bcover">cover:</label><br>
+            <input id="bcover" name="bcover" type="file"><br>
             
             <?php
                 if(isset($_POST['submit-article-button'])){
@@ -97,6 +99,7 @@ if(isset($_POST['submit-article-button'])){
                     $publisher =$_POST['publisher'];
                     $pageamount =$_POST['pageamount'];
                     $price =$_POST['price'];
+                    $bcover =$_FILES['bcover'];
 
                     
                 
@@ -105,7 +108,7 @@ if(isset($_POST['submit-article-button'])){
                     
                     
                     
-                    $stmt_addBook = $pdo->prepare("INSERT INTO books (title, descr, author, illustrator, age, category, genre, languages, release, publisher, pageamount, price) VALUES (:title, :descr, :author, :illustrator, :age, :category, :genre, :languages, :release :publisher, :pageamount, :price)");
+                    $stmt_addBook = $pdo->prepare("INSERT INTO books (title, descr, author, illustrator, age, category, genre, languages, release, publisher, pageamount, price, bcover) VALUES (:title, :descr, :author, :illustrator, :age, :category, :genre, :languages, :release :publisher, :pageamount, :price, :bcover)");
                     $stmt_addBook ->bindValue(":title", $title, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":descr", $descr, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":author", $author, PDO::PARAM_STR);
@@ -118,6 +121,7 @@ if(isset($_POST['submit-article-button'])){
                     $stmt_addBook ->bindValue(":publisher", $publisher, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":pageamount", $pageamount, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":price", $price, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":bcover", $bcover, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":ID", $ID, PDO::PARAM_STR);
                     $stmt_addBook ->execute();
             

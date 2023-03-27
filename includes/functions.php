@@ -18,19 +18,38 @@ function Delete($id, $pdo){
 	}
 
 	
-	function addPersonalCard($pdo){
-		$namn = $_POST['namn'];
-		$efternamn = $_POST['efternamn'];
-		$jobbtitel = $_POST['jobbtitel'];
-		$avdelning_FK = $_POST['avdelning_FK'];
-		$ort_FK = $_POST['ort_FK'];
-		$telefonnummer = $_POST['telefonnummer'];
-		$epost = $_POST['epost'];
-		$personalbild = $_FILES['personalbild']['name'];
-		$title_FK = $_POST['title_FK'];
+	function addBook($pdo){
+		$title =$_POST['title'];
+        $desc =$_POST['descr'];
+        $author =$_POST['author'];
+        $illustrator =$_POST['illustrator'];
+        $age =$_POST['age'];
+        $category =$_POST['category'];
+        $genre =$_POST['genre'];
+        $language =$_POST['languages'];
+        $release =$_POST['release'];
+        $publisher =$_POST['publisher'];
+         $pageamount =$_POST['pageamount'];
+        $price =$_POST['price'];
+        $bcover =$_FILES['bcover'];
 		}
 		
-	function javeteit(){
+	
+
+	function searchUsers($pdo){
+		$stmt_searchemployee = $pdo->prepare("SELECT * FROM anstalda WHERE namn=:searchTerm");
+		$stmt_searchemployee->bindValue(":searchTerm", $_GET['searchparam'], PDO::PARAM_STR);
+		$stmt_searchemployee->execute();
+
+		return $stmt_searchemployee;
+		}
+
+	
+	
+
+?>
+
+<!--function javeteit(){
 		//INSERT INTO articles (article_heading) VALUES ($articleHeading)
 		$stmt_addPersonal = $pdo->prepare(" INSERT INTO anstalda (namn, efternamn, jobbtitel, avdelning_FK, ort_FK, telefonnummer, epost, personalbild, title_FK) VALUES (:namn, :efternamn, :jobbtitel, :avdelning_FK, :ort_FK, :telefonnummer, :epost, :personalbild, :title_FK)");
 		$stmt_addPersonal->bindValue(":namn", $title, PDO::PARAM_STR);
@@ -45,17 +64,4 @@ function Delete($id, $pdo){
 		$stmt_addPersonal->execute();
 
 		return true;
-	}
-
-	function searchUsers($pdo){
-		$stmt_searchemployee = $pdo->prepare("SELECT * FROM anstalda WHERE namn=:searchTerm");
-		$stmt_searchemployee->bindValue(":searchTerm", $_GET['searchparam'], PDO::PARAM_STR);
-		$stmt_searchemployee->execute();
-
-		return $stmt_searchemployee;
-		}
-
-	
-	
-
-?>
+	} -->
