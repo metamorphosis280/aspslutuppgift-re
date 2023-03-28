@@ -1,9 +1,9 @@
 <?php
 
 function Delete($id, $pdo){
-    $stmt_deleteCard =$pdo->prepare("DELETE FROM anstalda WHERE ID =:id");
-    $stmt_deleteCard->bindValue(":id", $id, PDO::PARAM_INT);
-    $stmt_deleteCard->execute();
+    $stmt_deleteBook =$pdo->prepare("DELETE FROM books WHERE ID =:id");
+    $stmt_deleteBook->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt_deleteBook->execute();
 	return true;
 }
 
@@ -37,12 +37,14 @@ function Delete($id, $pdo){
 	
 
 	function searchUsers($pdo){
-		$stmt_searchemployee = $pdo->prepare("SELECT * FROM anstalda WHERE namn=:searchTerm");
+		$stmt_searchemployee = $pdo->prepare("SELECT * FROM books WHERE b_title =:searchTerm");
 		$stmt_searchemployee->bindValue(":searchTerm", $_GET['searchparam'], PDO::PARAM_STR);
 		$stmt_searchemployee->execute();
 
 		return $stmt_searchemployee;
 		}
+
+	
 
 	
 	

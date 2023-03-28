@@ -4,6 +4,10 @@
 	include_once "includes/functions.php";
 	include_once "header.php";
 	
+	if(isset($_GET['search-submit'])){
+		$searchResult = searchUsers($pdo);
+		
+	}
 ?>
 
 <?php
@@ -14,19 +18,13 @@
 					INNER JOIN table_language ON books.b_language_FK = table_language.l_ID
 					INNER JOIN table_author ON books.b_author_FK = table_author.au_ID
 					INNER JOIN table_genre ON books.b_genre_FK = table_genre.g_ID
-					WHERE books.b_title LIKE '%$searchResult%' 
-					OR books.b_author_FK, LIKE '%$searchResult%' OR books.b_illustrator LIKE '%$searchResult%' OR books.b_age LIKE '%$searchResult%' OR books.b_category_FK LIKE '%$searchResult%' OR books.b_language_FK LIKE '%$searchResult%';");
+					WHERE books.b_title LIKE '%$searchResult%' OR books.b_author_FK, LIKE '%$searchResult%' OR books.b_illustrator LIKE '%$searchResult%' OR books.b_age LIKE '%$searchResult%' OR books.b_category_FK LIKE '%$searchResult%' OR books.b_language_FK LIKE '%$searchResult%';");
 			
 					foreach ($stmt_selectBooks as $row)
 			{
 				echo '
 						<div class="justify-content-center col-lg-3 d-flex align-items-stretch" id="masthead">
-			
-							<div class="card my-2 cardBody" style="width:25rem">
-			
-								<div class="card-body d-flex flex-column">
-			
-									<img class="bcover" src="img/'.$row["bcover"].'">
+						<img class="bcover" src="img/'.$row["bcover"].'">
 			
 									<div class="textContainer">
 			
@@ -92,13 +90,13 @@
 			'<div>
 	<div class="card">
 	<div class="card-body d-flex flex-column">
-	<img src="img/'.$row["personalbild"].'" class="card-img-top" alt="...">
-	  <h5 class="card-title"> "'.$row[""].'"</h5>
-	  <p class="card-text">"'.$row[""].'"</p>
-	  <p class="card-text">"'.$row[""].'"</p>
-	  <p class="card-text">"'.$row[""].'"</p>
+	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
+	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
+	  <p class="card-text">"'.$row["b_descr"].'"</p>
+	  <p class="card-text">"'.$row["b_author_FK"].'"</p>
+	  <p class="card-text">"'.$row["b_illustrator"].'"</p>
 	  
-	  <a href="singlecard.php?ID='.$row['a_ID'].'" class="btn btn-primary mt-auto align-self-start">mera info</a>
+	  <a href="singlecard.php?ID='.$row['b_ID'].'" class="btn btn-primary mt-auto align-self-start">mera info</a>
 	   
 	</div>
 	 </div>

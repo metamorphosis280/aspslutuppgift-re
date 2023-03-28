@@ -48,7 +48,7 @@ if(isset($_POST['submit-article-button'])){
     </div>
 
     <div id='navigation'>
-        <a href="index.php">tillbaka till hemsida</a>
+        <a href="admincomms.php">back to admin site</a>
     </div>
     
 
@@ -60,35 +60,66 @@ if(isset($_POST['submit-article-button'])){
         <form method="POST" action="" enctype="multipart/form-data">
             <label for="title">title:</label><br>
             <input id="title" name="title" type="text"><br>
+            
             <label for="descr">description:</label><br>
             <input id="descr" name="descr" type="text"><br>
+            
             <label for="author">author:</label><br>
-            <input id="author" name="author" type="text"><br>
+            <select id="author" name="author" type="text"><br>
+			<option value="author 1">author 1</option>
+			<option value="author 2">author 2</option>
+			<option value="author 3">author 3</option>
+            </select><br>
+            
             <label for="illustrator">illustrator:</label><br>
             <input id="illustrator" name="illustrator" type="text"><br>
+            
             <label for="age">age rec:</label><br>
             <input id="age" name="age" type="text"><br>
-             <label for="category">category:</label><br>
-            <input id="category" name="category" type="text"><br>
-            <label for="genre">genre:</label><br>
-            <input id="genre" name="genre" type="text"><br>
+            
+            <label for="category">category:</label><br>
+            <select id="category" name="category" type="text"><br>
+			<option value="fantasy">fantasy</option>
+			<option value="romance">romance</option>
+			<option value="history">history</option>
+            <option value="art">art</option>
+	  		</select><br>
+            
+              <label for="genre">genre:</label><br>
+            <select id="genre" name="genre" type="text"><br>
+			<option value="test genre">test genre</option>
+			<option value=""></option>
+			<option value=""></option>
+            <option value=""></option>
+	  		</select><br>
+
             <label for="languages">languages:</label><br>
-            <input id="languages" name="languages" type="text"><br>
+            <select id="languages" name="languages" type="text"><br>
+			<option value="finnish">Finnish</option>
+			<option value="swedish">swedish</option>
+			<option value="english">english</option>
+	  		</select><br>
+
+            
             <label for="release">release:</label><br>
             <input id="release" name="release" type="text"><br>
+            
             <label for="publisher">publisher:</label><br>
             <input id="publisher" name="publisher" type="text"><br>
+            
             <label for="pageamount">pageamount:</label><br>
             <input id="pageamount" name="pageamount" type="text"><br>
+            
             <label for="price">price:</label><br>
             <input id="price" name="price" type="text"><br>
+            
             <label for="bcover">cover:</label><br>
             <input id="bcover" name="bcover" type="file"><br>
             
             <?php
                 if(isset($_POST['submit-article-button'])){
                     $title =$_POST['title'];
-                    $desc =$_POST['descr'];
+                    $descr =$_POST['descr'];
                     $author =$_POST['author'];
                     $illustrator =$_POST['illustrator'];
                     $age =$_POST['age'];
@@ -108,22 +139,21 @@ if(isset($_POST['submit-article-button'])){
                     
                     
                     
-                    $stmt_addBook = $pdo->prepare("INSERT INTO books (title, descr, author, illustrator, age, category, genre, languages, release, publisher, pageamount, price, bcover) VALUES (:title, :descr, :author, :illustrator, :age, :category, :genre, :languages, :release :publisher, :pageamount, :price, :bcover)");
-                    $stmt_addBook ->bindValue(":title", $title, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":descr", $descr, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":author", $author, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":illustrator", $illustrator, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":age", $age, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":category", $category, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":genre", $genre, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":languages", $languages, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":release", $release, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":publisher", $publisher, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":pageamount", $pageamount, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":price", $price, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":bcover", $bcover, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":ID", $ID, PDO::PARAM_STR);
-                    $stmt_addBook ->execute();
+                    $stmt_addBook = $pdo->prepare("INSERT INTO books (b_title, b_descr, b_author_FK, b_illustrator, b_age, b_category_FK, b_genre_FK, b_languages_FK, b_release, b_publisher, b_pageamount, b_price, b_bcover) VALUES (:b_title, :b_descr, :b_author_FK, :b_illustrator, :b_age, :b_category_FK, :b_genre_FK, :b_languages_FK, :b_release :b_publisher, :b_pageamount, :b_price, :b_bcover)");
+                    $stmt_addBook ->bindValue(":b_title", $title, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_descr", $descr, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_author_FK", $author, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_illustrator", $illustrator, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_age", $age, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_category_FK", $category, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_genre_FK", $genre, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_languages_FK", $languages, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_release", $release, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_publisher", $publisher, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_pageamount", $pageamount, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_price", $price, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_bcover", $bcover, PDO::PARAM_STR);
+                     $stmt_addBook ->execute();
             
             
                 }

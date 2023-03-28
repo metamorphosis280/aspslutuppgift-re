@@ -47,8 +47,8 @@ if ($uploadOk == 0) {
 } 
 
 else {
-  if (move_uploaded_file($_FILES["personalbild"]["tmp_name"], $target_file)) {
-    echo "The file ". htmlspecialchars( basename( $_FILES["personalbild"]["name"])). " has been uploaded.";
+  if (move_uploaded_file($_FILES["bcover"]["tmp_name"], $target_file)) {
+    echo "The file ". htmlspecialchars( basename( $_FILES["bcover"]["name"])). " has been uploaded.";
   } else {
     echo "Sorry, there was an error uploading your file.";
   }

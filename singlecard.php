@@ -10,7 +10,7 @@
 
     $ID = $_GET['ID'];
 
-    $stmt_selectProject = $pdo->prepare("SELECT * from anstalda WHERE a_ID = :ID");
+    $stmt_selectProject = $pdo->prepare("SELECT * from books WHERE b_ID = :ID");
 		$stmt_selectProject->bindValue(":ID", $ID, PDO::PARAM_INT);
 		$stmt_selectProject->execute();
 		$row = $stmt_selectProject->fetch(PDO::FETCH_ASSOC);
@@ -40,12 +40,11 @@ echo
 	
 	'<div class="project-container">
 	<div class="card-body">
-	  <h2 class="card-title"> "'.$row["namn"].'"</h2>
-	  <p class="card-text">"'.$row["efternamn"].'"</p>
-	  <p class="card-text">"'.$row["jobbtitel"].'"</p>
-	  <p class="card-text">"'.$row["telefonnummer"].'"</p>
-	  <p class="card-text">"'.$row["epost"].'"</p>
-	  <a href="editcard.php?ID='.$row['a_ID'].'" class="btn btn-primary">edit employee info</a>
+	<h5 class="card-title"> "'.$row["b_title"].'"</h5>
+	  <p class="card-text">"'.$row["b_descr"].'"</p>
+	  <p class="card-text">"'.$row["b_author_FK"].'"</p>
+	  <p class="card-text">"'.$row["b_illustrator"].'"</p>
+	  <a href="editcard.php?ID='.$row['b_ID'].'" class="btn btn-primary">edit employee info</a>
 	</div>
 	 </div>';
 

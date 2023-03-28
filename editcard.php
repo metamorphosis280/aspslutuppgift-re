@@ -17,24 +17,25 @@
     $ID = $_GET['ID'];
 
 	
-    $stmt_selectProject = $pdo->prepare("SELECT * from books WHERE a_ID = :ID");
-		$stmt_selectProject->bindValue(":ID", $ID, PDO::PARAM_INT);
-		$stmt_selectProject->execute();
-		$row = $stmt_selectProject->fetch(PDO::FETCH_ASSOC);
+    $stmt_selectBook = $pdo->prepare("SELECT * from books WHERE b_ID = :ID");
+		$stmt_selectBook->bindValue(":ID", $ID, PDO::PARAM_INT);
+		$stmt_selectBook->execute();
+		$row = $stmt_selectBook->fetch(PDO::FETCH_ASSOC);
 	
 		if(isset($_POST['submit-article-button'])){
-			$title =$_POST['title'];
-			$desc =$_POST['descr'];
-			$author =$_POST['author'];
-			$illustrator =$_POST['illustrator'];
-			$age =$_POST['age'];
-			$category =$_POST['category'];
-			$genre =$_POST['genre'];
-			$language =$_POST['languages'];
-			$release =$_POST['release'];
-			$publisher =$_POST['publisher'];
-			$pageamount =$_POST['pageamount'];
-			$price =$_POST['price'];
+			$title =$_POST['b_title'];
+			$desc =$_POST['b_descr'];
+			$author =$_POST['b_author_FK'];
+			$illustrator =$_POST['b_illustrator'];
+			$age =$_POST['b_age'];
+			$category =$_POST['b_category_FK'];
+			$genre =$_POST['b_genre_FK'];
+			$language =$_POST['b_language_FK'];
+			$release =$_POST['b_release'];
+			$publisher =$_POST['b_publisher'];
+			$pageamount =$_POST['b_pagecount'];
+			$price =$_POST['b_price'];
+			$bcover =$_FILES ['bcover'];
 		
 	
 	
@@ -42,27 +43,27 @@
 		
 		
 		
-		$stmt_addBook = $pdo->prepare("INSERT INTO books (title, descr, author, illustrator, age, category, genre, languages, release, publisher, pageamount, price) VALUES (:title, :descr, :author, :illustrator, :age, :category, :genre, :languages, :release :publisher, :pageamount, :price)");
-                    $stmt_addBook ->bindValue(":title", $title, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":descr", $descr, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":author", $author, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":illustrator", $illustrator, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":age", $age, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":category", $category, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":genre", $genre, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":languages", $languages, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":release", $release, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":publisher", $publisher, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":pageamount", $pageamount, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":price", $price, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":ID", $ID, PDO::PARAM_STR);
+		$stmt_addBook = $pdo->prepare("INSERT INTO books (b_title, b_descr, b_author_FK, b_illustrator, b_age, b_category_FK, b_genre_FK, b_language_FK, b_release, b_publisher, b_pagecount, b_price, bcover) VALUES (:b_title, :b_descr, :b_author_FK, :b_illustrator, :b_age, :b_category_FK, :b_genre_FK, :b_language_FK, :b_release :b_publisher, :b_pagecount, :b_price, :bcover)");
+                    $stmt_addBook ->bindValue(":b_title", $title, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_descr", $descr, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_author_FK", $author, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_illustrator", $illustrator, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_age", $age, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_category-FK", $category, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_genre_FK", $genre, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_language_FK", $languages, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_release", $release, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_publisher", $publisher, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_pagecount", $pageamount, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_price", $price, PDO::PARAM_STR);
+					$stmt_addBook ->bindValue(":bcover", $bcover, PDO::PARAM_STR);
                     $stmt_addBook ->execute();
             
             
                 }
 
 
-	}
+	
  
 
 	
@@ -105,7 +106,7 @@
 <body>
 
 <div id="header">
-  <h1 class="header-text">edit projects</h1>
+  <h1 class="header-text">edit books</h1>
 </div>
 
 <div id="navigation"> 
@@ -117,31 +118,52 @@
 		<form method="POST" action="" enctype="multipart/form-data">
 			
 
-			<label for="namn">namn:</label><br>
-			<input id="namn" name="namn" type="text" value="<?php echo $row['namn'] ?>"><br>
+			<label for="b_title">book title:</label><br>
+			<input id="b_title" name="b_title" type="text" value="<?php echo $row['b_title'] ?>"><br>
 
-			<label for="efternamn">efternamn:</label><br>
-			<input id="efternamn" name="efternamn" type="text" value="<?php echo $row['efternamn'] ?>"><br>
+			<label for="b_descr">description:</label><br>
+			<input id="b_descr" name="b_descr" type="text" value="<?php echo $row['b_descr'] ?>"><br>
 
-			<label for="jobbtitel">category number:</label><br>
-			<input id="jobbtitel" name="jobbtitel" type="text" value="<?php echo $row['jobbtitel'] ?>"><br>
+			<label for="b_author_FK">Author name:</label><br>
+			<input id="b_author_FK" name="b_author_FK" type="text" value="<?php echo $row['b_author_FK'] ?>"><br>
 
-			<label for="telefonnummer">telefon:</label><br>
-			<input id="telefonnummer" name="telefonnummer" type="text" value="<?php echo $row['telefonnummer'] ?>"><br>
+			<label for="b_illustrator">illustrator:</label><br>
+			<input id="b_illustrator" name="b_illustrator" type="text" value="<?php echo $row['b_illustrator'] ?>"><br>
 
-			<label for="epost">epost:</label><br>
-			<input id="epost" name="epost" type="text" value="<?php echo $row['epost'] ?>"><br>
+			<label for="b_age">age rec:</label><br>
+			<input id="b_age" name="b_age" type="text" value="<?php echo $row['b_age'] ?>"><br>
 
-			<label for="personalbild">personalbild:</label><br>
-			<input id="personalbild" name="personalbild" type="file" value="<?php echo $row['personalbild'] ?>"><br>
+			<label for="b_category_FK">category:</label><br>
+			<input id="b_category_FK" name="b_category_FK" type="text" value="<?php echo $row['b_category_FK'] ?>"><br>
+
+			<label for="b_genre_FK">genre:</label><br>
+			<input id="b_genre_FK" name="b_genre_FK" type="text" value="<?php echo $row['b_genre_FK'] ?>"><br>
+
+			<label for="b_language_FK">language:</label><br>
+			<input id="b_language_FK" name="b_language_FK" type="text" value="<?php echo $row['b_language_FK'] ?>"><br>
+
+			<label for="b_release">release date:</label><br>
+			<input id="b_release" name="b_release" type="text" value="<?php echo $row['b_release'] ?>"><br>
+
+			<label for="b_publisher">book publisher:</label><br>
+			<input id="b_publisher" name="b_publisher" type="text" value="<?php echo $row['b_publisher'] ?>"><br>
+
+			<label for="b_pagecount">page count:</label><br>
+			<input id="b_pagecount" name="b_pagecount" type="text" value="<?php echo $row['b_pagecount'] ?>"><br>
+
+			<label for="b_price">price:</label><br>
+			<input id="b_price" name="b_price" type="text" value="<?php echo $row['b_price'] ?>"><br>
+
+			<label for="bcover">book cover:</label><br>
+			<input id="bcover" name="bcover" type="file" value="<?php echo $row['bcover'] ?>"><br>
 
 			<input type="submit" name="submit-article-button" value="Create">	
 		
 		</form>
 
 		<form action="" method="POST">
-			<input type= "hidden" name="anstald-delete" value="<?php echo $row['a_ID'] ?>">
-			<input type="submit" name="delete-anstald" value="Delete">	
+			<input type= "hidden" name="book-delete" value="<?php echo $row['b_ID'] ?>">
+			<input type="submit" name="delete-book" value="Delete">	
 			</form>
 	</div>
 </div>
