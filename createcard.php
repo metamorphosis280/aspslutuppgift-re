@@ -64,11 +64,16 @@ if(isset($_POST['submit-article-button'])){
             <label for="descr">description:</label><br>
             <input id="descr" name="descr" type="text"><br>
             
+            <?php $stmt_selectAuthor = $pdo->query("SELECT * from table_author");?>
             <label for="author">author:</label><br>
             <select id="author" name="author" type="text"><br>
-			<option value="author 1">author 1</option>
-			<option value="author 2">author 2</option>
-			<option value="author 3">author 3</option>
+			<?php
+            foreach($stmt_selectAuthor as $author){
+                echo "<option value='{$author['au_ID']}'>{$author['au_name']}</option>";
+            }
+            
+            
+			?>
             </select><br>
             
             <label for="illustrator">illustrator:</label><br>
@@ -77,27 +82,42 @@ if(isset($_POST['submit-article-button'])){
             <label for="age">age rec:</label><br>
             <input id="age" name="age" type="text"><br>
             
+            <?php $stmt_selectCategory = $pdo->query("SELECT * from table_category");?>
             <label for="category">category:</label><br>
             <select id="category" name="category" type="text"><br>
-			<option value="fantasy">fantasy</option>
-			<option value="romance">romance</option>
-			<option value="history">history</option>
-            <option value="art">art</option>
+			<?php
+            foreach($stmt_selectCategory as $category){
+                echo "<option value='{$category['c_ID']}'>{$category['c_name']}</option>";
+            }
+            
+            
+			?>
 	  		</select><br>
             
-              <label for="genre">genre:</label><br>
+              <?php $stmt_selectGenre = $pdo->query("SELECT * from table_genres");?>
+            <label for="genre">genre:</label><br>
             <select id="genre" name="genre" type="text"><br>
-			<option value="test genre">test genre</option>
-			<option value=""></option>
-			<option value=""></option>
-            <option value=""></option>
+			<?php
+            foreach($stmt_selectGenre as $genre){
+                echo "<option value='{$genre['g_ID']}'>{$genre['g_name']}</option>";
+            }
+            
+            
+			?>
 	  		</select><br>
 
-            <label for="languages">languages:</label><br>
-            <select id="languages" name="languages" type="text"><br>
-			<option value="finnish">Finnish</option>
-			<option value="swedish">swedish</option>
-			<option value="english">english</option>
+              </select><br>
+            
+            <?php $stmt_selectLanguage = $pdo->query("SELECT * from table_language");?>
+          <label for="language">language:</label><br>
+          <select id="language" name="language" type="text"><br>
+          <?php
+          foreach($stmt_selectLanguage as $language){
+              echo "<option value='{$language['l_ID']}'>{$language['lname']}</option>";
+          }
+          
+          
+          ?>
 	  		</select><br>
 
             
@@ -107,14 +127,17 @@ if(isset($_POST['submit-article-button'])){
             <label for="publisher">publisher:</label><br>
             <input id="publisher" name="publisher" type="text"><br>
             
-            <label for="pageamount">pageamount:</label><br>
-            <input id="pageamount" name="pageamount" type="text"><br>
+            <label for="pagecount">pageamount:</label><br>
+            <input id="pagecount" name="pagecount" type="text"><br>
             
             <label for="price">price:</label><br>
             <input id="price" name="price" type="text"><br>
             
             <label for="bcover">cover:</label><br>
             <input id="bcover" name="bcover" type="file"><br>
+
+            <input type="submit" name="submit-article-button" value="create new book">
+           </form>
             
             <?php
                 if(isset($_POST['submit-article-button'])){
@@ -125,12 +148,12 @@ if(isset($_POST['submit-article-button'])){
                     $age =$_POST['age'];
                     $category =$_POST['category'];
                     $genre =$_POST['genre'];
-                    $language =$_POST['languages'];
+                    $language =$_POST['language'];
                     $release =$_POST['release'];
                     $publisher =$_POST['publisher'];
-                    $pageamount =$_POST['pageamount'];
+                    $pagecount =$_POST['pagecount'];
                     $price =$_POST['price'];
-                    $bcover =$_FILES['bcover'];
+                    $bcover =$_FILES['bcover']['name'];
 
                     
                 
@@ -139,7 +162,7 @@ if(isset($_POST['submit-article-button'])){
                     
                     
                     
-                    $stmt_addBook = $pdo->prepare("INSERT INTO books (b_title, b_descr, b_author_FK, b_illustrator, b_age, b_category_FK, b_genre_FK, b_languages_FK, b_release, b_publisher, b_pageamount, b_price, b_bcover) VALUES (:b_title, :b_descr, :b_author_FK, :b_illustrator, :b_age, :b_category_FK, :b_genre_FK, :b_languages_FK, :b_release :b_publisher, :b_pageamount, :b_price, :b_bcover)");
+                    $stmt_addBook = $pdo->prepare("INSERT INTO books (b_title, b_descr, b_author_FK, b_illustrator, b_age, b_category_FK, b_genre_FK, b_language_FK, b_release, b_publisher, b_pagecount, b_price, bcover) VALUES (:b_title, :b_descr, :b_author_FK, :b_illustrator, :b_age, :b_category_FK, :b_genre_FK, :b_language_FK, :b_release, :b_publisher, :b_pagecount, :b_price, :bcover)");
                     $stmt_addBook ->bindValue(":b_title", $title, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_descr", $descr, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_author_FK", $author, PDO::PARAM_STR);
@@ -147,23 +170,18 @@ if(isset($_POST['submit-article-button'])){
                     $stmt_addBook ->bindValue(":b_age", $age, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_category_FK", $category, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_genre_FK", $genre, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":b_languages_FK", $languages, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_language_FK", $language, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_release", $release, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_publisher", $publisher, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":b_pageamount", $pageamount, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_pagecount", $pagecount, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_price", $price, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":b_bcover", $bcover, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":bcover", $bcover, PDO::PARAM_STR);
                      $stmt_addBook ->execute();
             
             
                 }
             ?>
-            </select>
-
             
-
-            <input type="submit" name="submit-article-button" value="create new book">
-           </form>
 
 </div>
 <?php

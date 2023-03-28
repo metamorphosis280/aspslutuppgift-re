@@ -35,7 +35,7 @@
 			$publisher =$_POST['b_publisher'];
 			$pageamount =$_POST['b_pagecount'];
 			$price =$_POST['b_price'];
-			$bcover =$_FILES ['bcover'];
+			$bcover =$_FILES ['bcover']['name'];
 		
 	
 	
@@ -135,6 +135,8 @@
 
 			<label for="b_category_FK">category:</label><br>
 			<input id="b_category_FK" name="b_category_FK" type="text" value="<?php echo $row['b_category_FK'] ?>"><br>
+
+	  	
 
 			<label for="b_genre_FK">genre:</label><br>
 			<input id="b_genre_FK" name="b_genre_FK" type="text" value="<?php echo $row['b_genre_FK'] ?>"><br>

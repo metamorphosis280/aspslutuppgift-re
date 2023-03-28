@@ -26,10 +26,10 @@ function Delete($id, $pdo){
         $age =$_POST['age'];
         $category =$_POST['category'];
         $genre =$_POST['genre'];
-        $language =$_POST['languages'];
+        $language =$_POST['language'];
         $release =$_POST['release'];
         $publisher =$_POST['publisher'];
-         $pageamount =$_POST['pageamount'];
+         $pageamount =$_POST['pagecount'];
         $price =$_POST['price'];
         $bcover =$_FILES['bcover'];
 		}
