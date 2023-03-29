@@ -89,7 +89,7 @@
 
 			'<div>
 	<div class="card">
-	<div class="card-body d-flex flex-column">
+	<div class="card-body d-flex flex-column justify-content-center col-lg-3 d-flex align-items-stretch">
 	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
 	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
 	  <p class="card-text">"'.$row["b_descr"].'"</p>
@@ -118,7 +118,7 @@ foreach($stmt_showBook as $row){
 	
 	'<div>
 	<div class="card">
-	<div class="card-body d-flex flex-column">
+	<div class="card-body d-flex flex-column justify-content-center col-lg-3 d-flex align-items-stretch">
 	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
 	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
 	  <p class="card-text">"'.$row["b_descr"].'"</p>

@@ -40,6 +40,7 @@ echo
 	
 	'<div class="project-container">
 	<div class="card-body">
+	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
 	<h5 class="card-title"> "'.$row["b_title"].'"</h5>
 	  <p class="card-text">"'.$row["b_descr"].'"</p>
 	  <p class="card-text">"'.$row["b_author_FK"].'"</p>

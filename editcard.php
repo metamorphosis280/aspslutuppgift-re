@@ -24,7 +24,7 @@
 	
 		if(isset($_POST['submit-article-button'])){
 			$title =$_POST['b_title'];
-			$desc =$_POST['b_descr'];
+			$descr =$_POST['b_descr'];
 			$author =$_POST['b_author_FK'];
 			$illustrator =$_POST['b_illustrator'];
 			$age =$_POST['b_age'];
@@ -43,15 +43,15 @@
 		
 		
 		
-		$stmt_addBook = $pdo->prepare("INSERT INTO books (b_title, b_descr, b_author_FK, b_illustrator, b_age, b_category_FK, b_genre_FK, b_language_FK, b_release, b_publisher, b_pagecount, b_price, bcover) VALUES (:b_title, :b_descr, :b_author_FK, :b_illustrator, :b_age, :b_category_FK, :b_genre_FK, :b_language_FK, :b_release :b_publisher, :b_pagecount, :b_price, :bcover)");
+		$stmt_addBook = $pdo->prepare("UPDATE books SET b_title=:b_title, b_descr=:b_descr, b_author_FK=:b_author_FK, b_illustrator=:b_illustrator, b_age=:b_age, b_category_FK=:b_category_FK, b_genre_FK=:b_genre_FK, b_language_FK=:b_language_FK, b_release=:b_release, b_publisher=:b_publisher, b_pagecount=:b_pagecount, b_price=:b_price, bcover=:bcover WHERE b_ID =:ID");
                     $stmt_addBook ->bindValue(":b_title", $title, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_descr", $descr, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_author_FK", $author, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_illustrator", $illustrator, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_age", $age, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":b_category-FK", $category, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_category_FK", $category, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_genre_FK", $genre, PDO::PARAM_STR);
-                    $stmt_addBook ->bindValue(":b_language_FK", $languages, PDO::PARAM_STR);
+                    $stmt_addBook ->bindValue(":b_language_FK", $language, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_release", $release, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_publisher", $publisher, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_pagecount", $pageamount, PDO::PARAM_STR);
@@ -135,7 +135,6 @@
 
 			<label for="b_category_FK">category:</label><br>
 			<input id="b_category_FK" name="b_category_FK" type="text" value="<?php echo $row['b_category_FK'] ?>"><br>
-
 	  	
 
 			<label for="b_genre_FK">genre:</label><br>
