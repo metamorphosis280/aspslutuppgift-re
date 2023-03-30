@@ -13,14 +13,14 @@
 <?php
 				if (isset($_POST['submit-search'])) {
 					$searchResult = $_POST['search'];
-					$stmt_selectBooks = $pdo->query("SELECT books.b_title, books.b_desc, books.b_author_FK, books.b_illustrator, books.b_age, books.b_category_FK, books.b_language_FK, books.b_release, books.b_publisher, books.b_pagecount, books.b_price FROM books 
+					$stmt_selectBooks = $pdo->query("SELECT books.b_title, books.b_descr, books.b_author_FK, books.b_illustrator, books.b_age, books.b_category_FK, books.b_genre_FK, books.b_language_FK, books.b_release, books.b_publisher, books.b_pagecount, books.b_price, books.bcover, table_author.au_name, table_category.c_name, table_language.lname FROM books 
 					INNER JOIN table_author ON books.b_author_FK = table_author.au_ID
 					INNER JOIN table_category ON books.b_category_FK = table_category.c_ID
 					INNER JOIN table_language ON books.b_language_FK = table_language.l_ID
-					INNER JOIN table_genre ON books.b_genre_FK = table_genre.g_ID
-					WHERE books.b_title LIKE '%$searchResult%' OR books.b_author_FK, LIKE '%$searchResult%' OR books.b_illustrator LIKE '%$searchResult%' OR books.b_age LIKE '%$searchResult%' OR books.b_category_FK LIKE '%$searchResult%' OR books.b_genre_FK LIKE '%$searchResult%' OR books.b_language_FK LIKE '%$searchResult%';");
-			
-					foreach ($stmt_selectBooks as $row)
+					INNER JOIN table_genres ON books.b_genre_FK = table_genres.g_ID
+					WHERE books.b_title LIKE '%$searchResult%' OR table_author.au_name LIKE '%$searchResult%' OR books.b_illustrator LIKE '%$searchResult%' OR books.b_age LIKE '%$searchResult%' OR table_category.c_name LIKE '%$searchResult%' OR table_genres.g_name LIKE '%$searchResult%' OR table_language.lname LIKE '%$searchResult%';");
+					$stmt_selectBooks ->execute();
+				/*	foreach ($stmt_selectBooks as $row)
 			{
 				echo '
 						<div class="justify-content-center col-lg-3 d-flex align-items-stretch" id="masthead">
@@ -29,7 +29,7 @@
 									<div class="textContainer">
 			
 										<h2>'.$row["b_title"].'</h2>
-										<p>'.$row["b_desc"].'</p>
+										<p>'.$row["b_descr"].'</p>
 										<p>'.$row["au_name"].'</p>
 										<p>'.$row["b_illustrator"].'</p>
 										<p>'.$row["b_age"].'</p>
@@ -47,8 +47,38 @@
 							</div>
 			
 						</div>';
-			}
+
+						
+			}*/
+			
 				}
+				
+				else{
+					$stmt_selectBooks = $pdo->prepare ("SELECT * FROM books ORDER BY b_ID DESC LIMIT 20 ");
+ $stmt_selectBooks ->execute();
+/*foreach($stmt_showBook as $row){
+	echo 
+	
+	
+	'<div>
+	<div class="card">
+	<div class="card-body d-flex flex-column justify-content-center col-lg-3 d-flex align-items-stretch">
+	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
+	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
+	  <p class="card-text">"'.$row["b_descr"].'"</p>
+	  <p class="card-text">"'.$row["b_author_FK"].'"</p>
+	  <p class="card-text">"'.$row["b_illustrator"].'"</p>
+	  
+	  <a href="singlecard.php?ID='.$row['b_ID'].'" class="btn btn-primary mt-auto align-self-start">mera info</a>
+	   
+	</div>
+	 </div>
+	 </div>';
+}*/
+
+				}
+
+				
 		?>
 
 
@@ -74,12 +104,12 @@
             <form action="index.php" method="POST">
                 <i class="fa fa-search"></i>
                 <input type="text" class="form-control" name="search" placeholder="Search book">
-                <div class="searchBarButton"><button class="btn btn-primary" name="submit-search" type="submit">Sök</button></div>
+                <div class="searchBarButton"><button class="btn btn-primary" name="submit-search" type="submit">Search</button></div>
             </form>
 
 		
 			<?php 
-			foreach ($searchResult as $row)
+			foreach ($stmt_selectBooks as $row)
 			{
 				
 			
@@ -110,30 +140,7 @@
 	</div>
 </div>
 
-<?php $stmt_showBook = $pdo->prepare ("SELECT * FROM books ORDER BY b_ID DESC LIMIT 20 ");
- $stmt_showBook ->execute();
-foreach($stmt_showBook as $row){
-	echo 
-	
-	
-	'<div>
-	<div class="card">
-	<div class="card-body d-flex flex-column justify-content-center col-lg-3 d-flex align-items-stretch">
-	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
-	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
-	  <p class="card-text">"'.$row["b_descr"].'"</p>
-	  <p class="card-text">"'.$row["b_author_FK"].'"</p>
-	  <p class="card-text">"'.$row["b_illustrator"].'"</p>
-	  
-	  <a href="singlecard.php?ID='.$row['b_ID'].'" class="btn btn-primary mt-auto align-self-start">mera info</a>
-	   
-	</div>
-	 </div>
-	 </div>';
-}
 
-
-?>
 
 <?php
 include_once "includes/footer.php";

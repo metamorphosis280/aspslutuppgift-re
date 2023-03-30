@@ -1,8 +1,13 @@
+
+
+
 <?php
 
-function Delete($id, $pdo){
-    $stmt_deleteBook =$pdo->prepare("DELETE FROM books WHERE b_ID =:id");
-    $stmt_deleteBook->bindValue(":id", $id, PDO::PARAM_INT);
+
+
+function Delete($ID, $pdo){
+    $stmt_deleteBook =$pdo->prepare("DELETE FROM books WHERE b_ID =:ID");
+    $stmt_deleteBook->bindValue(":ID", $ID, PDO::PARAM_INT);
     $stmt_deleteBook->execute();
 	return true;
 }

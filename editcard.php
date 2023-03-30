@@ -57,6 +57,7 @@
                     $stmt_addBook ->bindValue(":b_pagecount", $pageamount, PDO::PARAM_STR);
                     $stmt_addBook ->bindValue(":b_price", $price, PDO::PARAM_STR);
 					$stmt_addBook ->bindValue(":bcover", $bcover, PDO::PARAM_STR);
+					$stmt_addBook->bindValue(":ID", $ID, PDO::PARAM_INT);
                     $stmt_addBook ->execute();
             
             
