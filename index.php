@@ -107,7 +107,7 @@
                 <div class="searchBarButton"><button class="btn btn-primary" name="submit-search" type="submit">Search</button></div>
             </form>
 
-		
+			<div class="row">
 			<?php 
 			foreach ($stmt_selectBooks as $row)
 			{
@@ -118,8 +118,10 @@
 				echo
 
 			'<div>
+			
 	<div class="card">
-	<div class="card-body d-flex flex-column justify-content-center col-lg-3 d-flex align-items-stretch">
+	
+	<div class="card-body d-flex flex-column justify-content-center col-4 col-md-6 col-lg-3 d-flex align-items-stretch">
 	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
 	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
 	  <p class="card-text">"'.$row["b_descr"].'"</p>
@@ -133,6 +135,7 @@
 	 </div>';
 			}
 			?>
+		</div>
 		</div>
 		
 
