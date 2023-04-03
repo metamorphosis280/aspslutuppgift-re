@@ -1,15 +1,21 @@
 
-<!--if($user->checkLoginStatus()){
-	$user->userRedirect("index.php");
-	}-->
+
 <?php
 	include_once "includes/class-user.php";
 	include_once "includes/config.php";
 	include_once "includes/upload.php";
 	include_once "includes/functions.php";
 
+	if($user->checkLoginStatus()){
+		$user->userRedirect("index.php");
+		}
 
-
+		if(isset($_POST['delete-book'])){
+			$bookToDelete =$_POST['book-delete'];
+			if(Delete($bookToDelete, $pdo)){
+				$user->userRedirect("index.php");
+			}
+		}
 
 
  // test

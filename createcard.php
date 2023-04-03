@@ -15,7 +15,9 @@ include_once "includes/upload.php";
 include_once "includes/functions.php";
 
 
-
+if($user->checkLoginStatus()){
+    $user->userRedirect("index.php");
+    }
 
 
 if(isset($_POST['submit-article-button'])){

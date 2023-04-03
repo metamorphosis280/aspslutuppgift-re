@@ -4,7 +4,9 @@
 	include_once "includes/functions.php";
 	include_once "header.php";
 	
-		
+  if($user->checkLoginStatus()){
+    $user->userRedirect("index.php");
+    }
 	
 ?>
 
@@ -95,7 +97,8 @@ if(isset($_POST['submit-genre-button'])){
            </form>
 
 
-           <a href="createcard.php">create new Book</a>
+           <a href="createcard.php">create new Book</a><br>
+           <a href="index.php">check main page</a>
            
           </div>
            </div>

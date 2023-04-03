@@ -13,7 +13,7 @@
 <?php
 				if (isset($_POST['submit-search'])) {
 					$searchResult = $_POST['search'];
-					$stmt_selectBooks = $pdo->query("SELECT books.b_title, books.b_descr, books.b_author_FK, books.b_illustrator, books.b_age, books.b_category_FK, books.b_genre_FK, books.b_language_FK, books.b_release, books.b_publisher, books.b_pagecount, books.b_price, books.bcover, table_author.au_name, table_category.c_name, table_language.lname FROM books 
+					$stmt_selectBooks = $pdo->prepare("SELECT books.b_title, books.b_descr, books.b_author_FK, books.b_illustrator, books.b_age, books.b_category_FK, books.b_genre_FK, books.b_language_FK, books.b_release, books.b_publisher, books.b_pagecount, books.b_price, books.bcover, table_author.au_name, table_category.c_name, table_language.lname FROM books 
 					INNER JOIN table_author ON books.b_author_FK = table_author.au_ID
 					INNER JOIN table_category ON books.b_category_FK = table_category.c_ID
 					INNER JOIN table_language ON books.b_language_FK = table_language.l_ID
@@ -55,6 +55,7 @@
 				
 				else{
 					$stmt_selectBooks = $pdo->prepare ("SELECT * FROM books ORDER BY b_ID DESC LIMIT 20 ");
+					
  $stmt_selectBooks ->execute();
 /*foreach($stmt_showBook as $row){
 	echo 
@@ -107,7 +108,12 @@
                 <div class="searchBarButton"><button class="btn btn-primary" name="submit-search" type="submit">Search</button></div>
             </form>
 
-			<div class="row">
+		
+				
+
+			
+		<div class="row">
+		<div class="col-4">
 			<?php 
 			foreach ($stmt_selectBooks as $row)
 			{
@@ -121,7 +127,7 @@
 			
 	<div class="card">
 	
-	<div class="card-body d-flex flex-column justify-content-center col-4 col-md-6 col-lg-3 d-flex align-items-stretch">
+	<div class="card style="width: 18rem;">
 	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
 	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
 	  <p class="card-text">"'.$row["b_descr"].'"</p>
@@ -135,6 +141,8 @@
 	 </div>';
 			}
 			?>
+		</div>
+		</div>
 		</div>
 		</div>
 		
