@@ -122,6 +122,8 @@
   <a href="index.php">Till framsidan</a>
 </div>
 
+<!--edit book form starts here -->
+
 <div id="content">
 	<div class="content-inner">
 		<form method="POST" action="" enctype="multipart/form-data">
@@ -177,6 +179,8 @@
 			</form>
 	</div>
 </div>
+
+<!--edit book form ends here -->
 
 <?php 
 include_once "includes/footer.php";

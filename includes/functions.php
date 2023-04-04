@@ -1,5 +1,5 @@
 
-
+<!--functions -->
 
 <?php
 
@@ -56,19 +56,3 @@ function Delete($ID, $pdo){
 
 ?>
 
-<!--function javeteit(){
-		//INSERT INTO articles (article_heading) VALUES ($articleHeading)
-		$stmt_addPersonal = $pdo->prepare(" INSERT INTO anstalda (namn, efternamn, jobbtitel, avdelning_FK, ort_FK, telefonnummer, epost, personalbild, title_FK) VALUES (:namn, :efternamn, :jobbtitel, :avdelning_FK, :ort_FK, :telefonnummer, :epost, :personalbild, :title_FK)");
-		$stmt_addPersonal->bindValue(":namn", $title, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":efternamn", $content, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":jobbtitel", $projectimage, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":avdelning_FK", $pCat_fk, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":ort_FK", $pCat_fk, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":telefonnummer", $pCat_fk, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":epost", $pCat_fk, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":personalbild", $pCat_fk, PDO::PARAM_STR);
-		$stmt_addPersonal->bindValue(":title_FK", $pCat_fk, PDO::PARAM_STR);
-		$stmt_addPersonal->execute();
-
-		return true;
-	} -->

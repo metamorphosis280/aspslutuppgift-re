@@ -1,13 +1,5 @@
 
-<!--//Check if user is not logged in and redirect to homepage
-if($user->checkLoginStatus()!=false){
-    $user->userRedirect("index.php");
-}
 
-if(!$user->checkUserRole($_SESSION['urole'], 50)){
-    $user->userRedirect("index.php");
-    
-}-->
 
 <?php
 include_once "includes/config.php";
@@ -56,6 +48,8 @@ if(isset($_POST['submit-article-button'])){
 
 <h1></h1>
 <p>.</p>
+
+<!--create new card form starts here -->
 
 <div id='content'>
     <div class="content-inner">
@@ -120,6 +114,9 @@ if(isset($_POST['submit-article-button'])){
           
           
           ?>
+
+<!--create new card form ends here -->
+
 	  		</select><br>
 
             

@@ -93,12 +93,7 @@
 		</div>
 		<div class="row">
 			<div class="col">
-			<form method="GET" action="">
-  			<input type="text" id="searchparam" name="searchparam" placeholder="Input search parameter here"><br>
- 			<input type="submit" value="Submit" name="search-submit">
-			</form> 
-			</div>
-		</div>
+			
 
 		
 		<div class="search search-bar-container">
@@ -121,20 +116,23 @@
 			
 				
 				
-				echo
+	echo
 
-			'<div>
+	'<div>
+			
 			
 	<div class="card">
 	
 	<div class="card style="width: 18rem;">
 	<img src="img/'.$row["bcover"].'" class="card-img-top" alt="...">
-	  <h5 class="card-title"> "'.$row["b_title"].'"</h5>
-	  <p class="card-text">"'.$row["b_descr"].'"</p>
-	  <p class="card-text">"'.$row["b_author_FK"].'"</p>
-	  <p class="card-text">"'.$row["b_illustrator"].'"</p>
+	<h5 class="card-title"> "'.$row["b_title"].'"</h5>
+	<p class="card-text">"'.$row["b_descr"].'"</p>
+	<p class="card-text">Author:"'.$row["b_author_FK"].'"</p>
+	<p class="card-text">Illustrator:"'.$row["b_illustrator"].'"</p>
+	<p class="card-text">Category:"'.$row["b_category_FK"].'"</p>
+	<p class="card-text">price"'.$row["b_price"].'"</p>
 	  
-	  <a href="singlecard.php?ID='.$row['b_ID'].'" class="btn btn-primary mt-auto align-self-start">mera info</a>
+	<a href="singlecard.php?ID='.$row['b_ID'].'" class="btn btn-primary mt-auto align-self-start">mera info</a>
 	   
 	</div>
 	 </div>
@@ -148,7 +146,7 @@
 		
 
 
-	</div>
+</div>
 </div>
 
 
@@ -158,15 +156,3 @@ include_once "includes/footer.php";
 ?>
 
 
-'<!--<div class="col-12 col-md-6 col-lg-3 d-flex align-items-stretch">
-				<div class="card">
-				<img src="img/'.$row["personalbild"].'" class="card-img-top" alt="...">
-				<div class="card-body d-flex flex-column">
-				  <h5 class="card-title"> "'.$row["namn"].'"</h5>
-				  <h5 class="card-title"> "'.$row["efternamn"].'"</h5>
-				  <p class="card-text">"'.$row["jobbtitel"].'"</p>
-				  <p class="card-text">"'.$row[""].'"</p>
-				   <a href="singleproject.php?ID='.$row['ID'].'" class="btn btn-primary mt-auto align-self-start">Learn more</a>
-				</div>
-				 </div>
-				 </div>' -->

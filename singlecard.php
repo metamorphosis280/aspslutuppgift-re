@@ -29,9 +29,7 @@
 
 	
 
-<!--if($user->checkUserRole($_SESSION['urole'], 50)){
-    echo '<a href="editcard.php?ID='.$row['ID'].'" class="btn btn-primary">edit employee info</a>';  
-}-->
+
 <?php
 
 
@@ -59,7 +57,7 @@ echo
 	</div>
 	 </div>';
 
-	 
+	 // checks if user is logged in and hides/creates the edit button//
 
 	 if($user->checkLoginStatus()){
 		echo "";

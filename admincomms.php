@@ -33,7 +33,7 @@
   
             ?>
 
-
+<!--admin creation tools start here -->
 
 <input type="submit" name="submit-language-button" value="create language"><br>
 
@@ -102,7 +102,9 @@ if(isset($_POST['submit-genre-button'])){
            
           </div>
            </div>
+           <!--admin creation tools end here -->
 <?php
+
 
 
 include_once "includes/footer.php";
